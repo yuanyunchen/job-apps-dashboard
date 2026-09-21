@@ -1,0 +1,19 @@
+{
+  "bad": [
+    "https://www.amazon.jobs/jobs/10442923/apply",
+    "https://www.amazon.jobs/jobs/10459443/apply",
+    "https://www.linkedin.com/jobs/view/4437926548/",
+    "https://www.linkedin.com/jobs/view/4457416049/",
+    "https://www.linkedin.com/jobs/view/4466121937/",
+    "https://www.linkedin.com/jobs/view/4468010667/"
+  ],
+  "codes": {
+    "https://www.linkedin.com/jobs/view/4466121937/": "429",
+    "https://www.amazon.jobs/jobs/10442923/apply": "404",
+    "https://www.amazon.jobs/jobs/10459443/apply": "404",
+    "https://www.linkedin.com/jobs/view/4457416049/": "429",
+    "https://www.linkedin.com/jobs/view/4437926548/": "429",
+    "https://www.linkedin.com/jobs/view/4468010667/": "429"
+  },
+  "checked": 125
+}
