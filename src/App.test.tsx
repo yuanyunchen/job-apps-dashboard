@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import App from './App'
+import { Heatmap } from './components/Heatmap'
 import type { DashboardSeed, LinkCheckData } from './types'
 
 const brokenRoleUrl = 'https://example.com/broken-role'
@@ -78,6 +79,66 @@ const linkCheck: LinkCheckData = {
 
 const initialData = { seed, linkCheck }
 
+describe('Heatmap keyboard and touch targets', () => {
+  it('keeps a 10px visual cell inside one roving interactive tab stop', () => {
+    const { container } = render(
+      <Heatmap
+        counts={{ '2026-09-21': 2 }}
+        endDate="2026-09-21"
+      />,
+    )
+
+    const days = Array.from(
+      container.querySelectorAll<HTMLButtonElement>('.heatmap-day'),
+    )
+    expect(days).toHaveLength(371)
+    expect(days.filter((day) => day.tabIndex === 0)).toHaveLength(1)
+    expect(days.find((day) => day.tabIndex === 0)).toHaveAccessibleName(
+      /september 21, 2026: 2 applications/i,
+    )
+    expect(days[0]).toContainElement(
+      days[0]?.querySelector('.heatmap-cell') ?? null,
+    )
+  })
+
+  it('moves focus and selection by day or week with arrow keys', async () => {
+    const user = userEvent.setup()
+    render(
+      <Heatmap
+        counts={{
+          '2026-09-13': 4,
+          '2026-09-20': 3,
+          '2026-09-21': 2,
+        }}
+        endDate="2026-09-21"
+      />,
+    )
+    const initialDay = screen.getByRole('button', {
+      name: /september 21, 2026: 2 applications/i,
+    })
+    initialDay.focus()
+
+    await user.keyboard('{ArrowUp}')
+    const previousDay = screen.getByRole('button', {
+      name: /september 20, 2026: 3 applications/i,
+    })
+    expect(previousDay).toHaveFocus()
+    expect(previousDay).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getByText('3 applications')).toBeVisible()
+
+    await user.keyboard('{ArrowLeft}')
+    const previousWeek = screen.getByRole('button', {
+      name: /september 13, 2026: 4 applications/i,
+    })
+    expect(previousWeek).toHaveFocus()
+    expect(previousWeek).toHaveAttribute('aria-pressed', 'true')
+
+    await user.keyboard('{ArrowRight}{ArrowDown}')
+    expect(initialDay).toHaveFocus()
+    expect(initialDay).toHaveAttribute('aria-pressed', 'true')
+  })
+})
+
 describe('Job Apps Dashboard', () => {
   afterEach(() => {
     vi.restoreAllMocks()
@@ -142,6 +203,23 @@ describe('Job Apps Dashboard', () => {
     expect(within(navigation).getAllByRole('button')).toHaveLength(6)
   })
 
+  it('formats refresh labels from the seed calendar date', () => {
+    render(
+      <App
+        initialData={{
+          linkCheck,
+          seed: {
+            ...seed,
+            generated_at: '2026-09-21T23:30:00-04:00',
+          },
+        }}
+      />,
+    )
+
+    expect(screen.getAllByText('Refreshed Sep 21, 2026')).toHaveLength(2)
+    expect(screen.queryByText('Refreshed Sep 22, 2026')).not.toBeInTheDocument()
+  })
+
   it('shows the selected activity day and application count', async () => {
     const user = userEvent.setup()
     render(<App initialData={initialData} />)
@@ -178,9 +256,14 @@ describe('Job Apps Dashboard', () => {
     await user.click(screen.getByRole('button', { name: /calendar/i }))
 
     expect(screen.getByText('Link unavailable')).toBeVisible()
-    const safeCalendarLink = screen.getByRole('link', { name: /abridge/i })
+    const safeCalendarLink = screen.getByRole('link', {
+      name: /abridge · software engineer, early career/i,
+    })
     expect(safeCalendarLink).toHaveAttribute('target', '_blank')
     expect(safeCalendarLink).toHaveAttribute('rel', 'noreferrer')
+    expect(
+      within(safeCalendarLink).getByText('Software Engineer, Early Career'),
+    ).toHaveClass('calendar-event-role')
   })
 
   it('shows unavailable alert links visibly and secures external anchors', async () => {

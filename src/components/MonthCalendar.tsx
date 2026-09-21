@@ -132,6 +132,7 @@ export const MonthCalendar = ({
                       const label = `${event.company} · ${event.role}`
                       return url ? (
                         <a
+                          aria-label={label}
                           className={`calendar-event event-${event.type}`}
                           href={url}
                           key={event.id}
@@ -139,16 +140,31 @@ export const MonthCalendar = ({
                           target="_blank"
                           title={label}
                         >
-                          <span>{event.company}</span>
+                          <span className="calendar-event-copy">
+                            <span className="calendar-event-company">
+                              {event.company}
+                            </span>
+                            <span className="calendar-event-role">
+                              {event.role}
+                            </span>
+                          </span>
                           <ExternalLink aria-hidden="true" size={10} />
                         </a>
                       ) : (
                         <span
+                          aria-label={label}
                           className={`calendar-event calendar-event-unavailable event-${event.type}`}
                           key={event.id}
                           title={label}
                         >
-                          <span>{event.company}</span>
+                          <span className="calendar-event-copy">
+                            <span className="calendar-event-company">
+                              {event.company}
+                            </span>
+                            <span className="calendar-event-role">
+                              {event.role}
+                            </span>
+                          </span>
                           <small>Link unavailable</small>
                         </span>
                       )

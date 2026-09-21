@@ -61,10 +61,64 @@ const isStringRecord = (value: unknown): value is Record<string, string> =>
 const isNullableString = (value: unknown): value is string | null =>
   value === null || typeof value === 'string'
 
-const isOptionalNullableString = (
+const parseCalendarDate = (value: string): Date => {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value)
+  if (!match) throw new Error(`Invalid date: ${value}`)
+
+  const year = Number(match[1])
+  const month = Number(match[2]) - 1
+  const day = Number(match[3])
+  const date = new Date(year, month, day)
+
+  if (
+    date.getFullYear() !== year ||
+    date.getMonth() !== month ||
+    date.getDate() !== day
+  ) {
+    throw new Error(`Invalid date: ${value}`)
+  }
+
+  return date
+}
+
+const isCalendarDate = (value: unknown): value is string => {
+  if (typeof value !== 'string') return false
+  try {
+    parseCalendarDate(value)
+    return true
+  } catch {
+    return false
+  }
+}
+
+const isOptionalNullableCalendarDate = (
   value: unknown,
 ): value is string | null | undefined =>
-  value === undefined || isNullableString(value)
+  value === undefined || value === null || isCalendarDate(value)
+
+const isIsoTimestamp = (value: unknown): value is string => {
+  if (typeof value !== 'string') return false
+  const match =
+    /^(\d{4}-\d{2}-\d{2})T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z|[+-](\d{2}):(\d{2}))$/.exec(
+      value,
+    )
+  if (!match) return false
+
+  try {
+    parseCalendarDate(match[1]!)
+  } catch {
+    return false
+  }
+
+  const offsetHours = match[2] ? Number(match[2]) : 0
+  const offsetMinutes = match[3] ? Number(match[3]) : 0
+  return (
+    offsetHours <= 14 &&
+    offsetMinutes <= 59 &&
+    (offsetHours !== 14 || offsetMinutes === 0) &&
+    Number.isFinite(Date.parse(value))
+  )
+}
 
 const isPendingApplication = (value: unknown): boolean =>
   isRecord(value) &&
@@ -72,8 +126,8 @@ const isPendingApplication = (value: unknown): boolean =>
   typeof value.role === 'string' &&
   isNullableString(value.url) &&
   typeof value.notes === 'string' &&
-  isOptionalNullableString(value.oa_due) &&
-  isOptionalNullableString(value.interview_date) &&
+  isOptionalNullableCalendarDate(value.oa_due) &&
+  isOptionalNullableCalendarDate(value.interview_date) &&
   typeof value.status === 'string' &&
   typeof value.link_status === 'string' &&
   typeof value.blurb === 'string'
@@ -96,7 +150,7 @@ const isDashboardSeed = (value: unknown): value is DashboardSeed => {
   if (!isRecord(value)) return false
 
   return (
-    typeof value.generated_at === 'string' &&
+    isIsoTimestamp(value.generated_at) &&
     typeof value.timezone === 'string' &&
     isStringArray(value.notify_only_companies) &&
     isNumberRecord(value.daily_applied_counts) &&
@@ -173,27 +227,6 @@ export const safeUrl = (
   }
 }
 
-const parseDateOnly = (value: string): Date => {
-  const dateOnly = value.slice(0, 10)
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateOnly)
-  if (!match) throw new Error(`Invalid date: ${value}`)
-
-  const year = Number(match[1])
-  const month = Number(match[2]) - 1
-  const day = Number(match[3])
-  const date = new Date(year, month, day)
-
-  if (
-    date.getFullYear() !== year ||
-    date.getMonth() !== month ||
-    date.getDate() !== day
-  ) {
-    throw new Error(`Invalid date: ${value}`)
-  }
-
-  return date
-}
-
 const formatDateOnly = (date: Date): string => {
   const year = date.getFullYear()
   const month = String(date.getMonth() + 1).padStart(2, '0')
@@ -213,7 +246,7 @@ export const buildHeatmap = (
   counts: Record<string, number>,
   endDate: string,
 ): HeatmapWeek[] => {
-  const finalWeekStart = startOfWeek(parseDateOnly(endDate))
+  const finalWeekStart = startOfWeek(parseCalendarDate(endDate))
   const firstWeekStart = addDays(finalWeekStart, -52 * 7)
 
   return Array.from({ length: 53 }, (_, weekIndex) => {
@@ -270,7 +303,7 @@ const toCalendarEvent = (
 })
 
 export const buildAlerts = (data: DashboardSeed): AlertBuckets => {
-  const reference = parseDateOnly(data.generated_at.slice(0, 10))
+  const reference = parseCalendarDate(data.generated_at.slice(0, 10))
   const alerts: AlertBuckets = { oneDay: [], oneWeek: [] }
 
   const datedItems = [
@@ -291,7 +324,7 @@ export const buildAlerts = (data: DashboardSeed): AlertBuckets => {
   for (const { item, index, type, date } of datedItems) {
     if (!date) continue
 
-    const calendarDate = parseDateOnly(date)
+    const calendarDate = parseCalendarDate(date)
     const daysAway = Math.round(
       (calendarDate.getTime() - reference.getTime()) / 86_400_000,
     )
@@ -301,6 +334,8 @@ export const buildAlerts = (data: DashboardSeed): AlertBuckets => {
     if (daysAway >= 2 && daysAway <= 7) alerts.oneWeek.push(event)
   }
 
+  alerts.oneDay.sort((a, b) => a.date.localeCompare(b.date))
+  alerts.oneWeek.sort((a, b) => a.date.localeCompare(b.date))
   return alerts
 }
 

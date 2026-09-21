@@ -11,7 +11,7 @@
   --border-strong: #d8dad1;
   --text: #20221f;
   --muted: #71756e;
-  --subtle: #999d95;
+  --subtle: #666b63;
   --indigo: #625be8;
   --indigo-soft: #efedff;
   --coral: #ee755f;
@@ -206,7 +206,7 @@ p {
 .rail-footer small {
   margin-top: 3px;
   color: var(--subtle);
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .mobile-topbar {
@@ -368,7 +368,7 @@ p {
   align-items: center;
   gap: 5px;
   color: var(--subtle);
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .heatmap-legend i {
@@ -393,7 +393,7 @@ p {
 
 .heatmap-scroll {
   overflow-x: auto;
-  padding: 4px 2px 10px;
+  padding: 6px 4px 10px;
   scrollbar-color: #d5d8d0 transparent;
   scrollbar-width: thin;
 }
@@ -402,20 +402,20 @@ p {
   display: grid;
   width: max-content;
   min-width: 100%;
-  grid-template-columns: repeat(53, minmax(14px, 1fr));
+  grid-template-columns: repeat(53, minmax(24px, 1fr));
   gap: 0;
 }
 
 .heatmap-week {
   display: grid;
   gap: 0;
-  grid-template-rows: repeat(7, 14px);
+  grid-template-rows: repeat(7, 24px);
 }
 
 .heatmap-day {
   display: grid;
-  min-width: 14px;
-  min-height: 14px;
+  min-width: 24px;
+  min-height: 24px;
   place-items: center;
   padding: 0;
   border: 0;
@@ -451,7 +451,7 @@ p {
 .detail-kicker {
   margin-bottom: 12px;
   color: var(--subtle);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: .11em;
   text-transform: uppercase;
@@ -472,7 +472,7 @@ p {
 .activity-detail p {
   margin: 11px 0 0;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -514,7 +514,7 @@ p {
 .calendar-empty small {
   margin-top: 2px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .icon-button {
@@ -551,7 +551,7 @@ p {
   padding: 11px 12px;
   border-bottom: 1px solid var(--border);
   color: var(--subtle);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: .09em;
   text-align: right;
@@ -578,7 +578,7 @@ p {
 .calendar-cell time {
   display: block;
   margin-bottom: 8px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   text-align: right;
 }
@@ -598,7 +598,7 @@ p {
   overflow: hidden;
   border-left: 2px solid;
   border-radius: 4px;
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
@@ -609,6 +609,25 @@ p {
   text-overflow: ellipsis;
 }
 
+.calendar-event-copy {
+  display: grid;
+  min-width: 0;
+  gap: 1px;
+}
+
+.calendar-event-company,
+.calendar-event-role {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calendar-event-role {
+  font-size: 11px;
+  font-weight: 500;
+  opacity: .82;
+}
+
 .calendar-event-unavailable {
   align-items: flex-start;
   flex-direction: column;
@@ -617,7 +636,7 @@ p {
 
 .calendar-event-unavailable small {
   opacity: .72;
-  font-size: 7px;
+  font-size: 11px;
   font-weight: 500;
 }
 
@@ -721,7 +740,7 @@ p {
   border-radius: 999px;
   color: #5b56ca;
   background: var(--indigo-soft);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -768,7 +787,7 @@ p {
   align-items: center;
   gap: 6px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .card-link,
@@ -777,14 +796,14 @@ p {
   align-items: center;
   gap: 4px;
   color: #514bc3;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   text-decoration: none;
 }
 
 .link-unavailable {
   color: var(--subtle);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
 }
 
@@ -893,7 +912,7 @@ p {
   border-radius: 8px;
   color: var(--muted);
   background: #f1f1ed;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
 }
 
@@ -918,7 +937,7 @@ p {
   padding: 4px 6px;
   border: 0;
   border-radius: 5px;
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 700;
 }
 
@@ -929,20 +948,20 @@ p {
 
 .alert-row strong {
   margin-bottom: 2px;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .alert-row div span {
   overflow: hidden;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .alert-row time {
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .alert-row a {
@@ -1104,7 +1123,7 @@ p {
 
   .mobile-refresh {
     color: var(--subtle);
-    font-size: 9px;
+    font-size: 11px;
   }
 
   .rail {

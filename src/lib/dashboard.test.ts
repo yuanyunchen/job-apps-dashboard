@@ -161,6 +161,38 @@ describe('buildAlerts', () => {
       1,
     )
   })
+
+  it('handles leap-day rollover boundaries and sorts each urgency bucket by date', () => {
+    const pending = (company: string, oaDue: string) => ({
+      ...validPendingApplication,
+      company,
+      oa_due: oaDue,
+    })
+    const seedAtLeapDayBoundary = makeSeed({
+      generated_at: '2028-02-28T23:30:00-05:00',
+      pending_oa: [
+        pending('Eight days away', '2028-03-07'),
+        pending('Seven days away', '2028-03-06'),
+        pending('Same day', '2028-02-28'),
+        pending('Two days away', '2028-03-01'),
+        pending('Leap day', '2028-02-29'),
+      ],
+    })
+
+    const alerts = buildAlerts(seedAtLeapDayBoundary)
+
+    expect(alerts.oneDay.map((event) => event.company)).toEqual(['Leap day'])
+    expect(alerts.oneWeek.map((event) => event.company)).toEqual([
+      'Two days away',
+      'Seven days away',
+    ])
+    expect(
+      [...alerts.oneDay, ...alerts.oneWeek].map((event) => event.company),
+    ).not.toContain('Same day')
+    expect(
+      [...alerts.oneDay, ...alerts.oneWeek].map((event) => event.company),
+    ).not.toContain('Eight days away')
+  })
 })
 
 describe('getNotifiedCompanies', () => {
@@ -254,6 +286,47 @@ describe('loadDashboardData', () => {
         ),
       )
     vi.stubGlobal('fetch', fetchMock)
+
+    await expect(loadDashboardData()).rejects.toThrow(
+      'Invalid dashboard seed data',
+    )
+  })
+
+  it.each([
+    '2026-02-30T17:20:07-04:00',
+    '2026-09-21 17:20:07-04:00',
+    '2026-09-21T25:20:07-04:00',
+  ])('rejects invalid generated timestamp %s', async (generatedAt) => {
+    stubDashboardFetch(makeSeed({ generated_at: generatedAt }))
+
+    await expect(loadDashboardData()).rejects.toThrow(
+      'Invalid dashboard seed data',
+    )
+  })
+
+  it.each([
+    {
+      field: 'OA due date',
+      overrides: {
+        pending_oa: [
+          { ...validPendingApplication, oa_due: '2026-02-30' },
+        ],
+      },
+    },
+    {
+      field: 'interview date',
+      overrides: {
+        pending_interviews: [
+          {
+            ...validPendingApplication,
+            oa_due: undefined,
+            interview_date: '2026-04-31',
+          },
+        ],
+      },
+    },
+  ])('rejects an impossible pending $field', async ({ overrides }) => {
+    stubDashboardFetch(makeSeed(overrides))
 
     await expect(loadDashboardData()).rejects.toThrow(
       'Invalid dashboard seed data',

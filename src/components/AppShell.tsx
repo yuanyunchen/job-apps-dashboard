@@ -45,7 +45,8 @@ interface AppShellProps {
 
 const formatRefreshDate = (value?: string): string => {
   if (!value) return 'Loading latest data'
-  const date = new Date(value)
+  const calendarDate = value.slice(0, 10)
+  const date = new Date(`${calendarDate}T12:00:00`)
   if (Number.isNaN(date.getTime())) return 'Refresh date unavailable'
   return `Refreshed ${new Intl.DateTimeFormat('en-US', {
     month: 'short',
