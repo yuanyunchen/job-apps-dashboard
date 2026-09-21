@@ -46,7 +46,7 @@ const AlertList = ({
                 <ArrowUpRight aria-hidden="true" size={17} />
               </a>
             ) : (
-              <span className="sr-only">Link unavailable</span>
+              <span className="link-unavailable">Link unavailable</span>
             )}
           </article>
         )

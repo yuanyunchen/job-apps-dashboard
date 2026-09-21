@@ -61,6 +61,16 @@ export const AppShell = ({
   onNavigate,
 }: AppShellProps) => (
   <div className="app-shell">
+    <header className="mobile-topbar" aria-label="Mobile workspace header">
+      <div className="brand">
+        <span className="brand-mark" aria-hidden="true">
+          <Sparkles size={17} />
+        </span>
+        <strong>Jobflow</strong>
+      </div>
+      <span className="mobile-refresh">{formatRefreshDate(generatedAt)}</span>
+    </header>
+
     <aside className="rail">
       <div className="brand">
         <span className="brand-mark" aria-hidden="true">
@@ -74,6 +84,7 @@ export const AppShell = ({
       <nav className="navigation" aria-label="Dashboard views">
         {navigation.map(({ id, label, icon: Icon }) => (
           <button
+            aria-current={activeView === id ? 'page' : undefined}
             className="nav-button"
             data-active={activeView === id}
             key={id}
@@ -93,16 +104,6 @@ export const AppShell = ({
         </span>
       </div>
     </aside>
-
-    <div className="mobile-topbar">
-      <div className="brand">
-        <span className="brand-mark" aria-hidden="true">
-          <Sparkles size={17} />
-        </span>
-        <strong>Jobflow</strong>
-      </div>
-      <span className="mobile-refresh">{formatRefreshDate(generatedAt)}</span>
-    </div>
 
     <main className="main-content">{children}</main>
   </div>

@@ -59,12 +59,17 @@ export const Heatmap = ({ counts, endDate }: HeatmapProps) => {
                     <button
                       aria-label={`${formatDate(day.date)}: ${countLabel}`}
                       aria-pressed={selected.date === day.date}
-                      className={`heatmap-day heat-level-${levelFor(day.count, maximum)}`}
+                      className="heatmap-day"
                       key={day.date}
                       onClick={() => setSelected(day)}
                       title={`${formatDate(day.date)} · ${countLabel}`}
                       type="button"
-                    />
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={`heatmap-cell heat-level-${levelFor(day.count, maximum)}`}
+                      />
+                    </button>
                   )
                 })}
               </div>

@@ -402,27 +402,36 @@ p {
   display: grid;
   width: max-content;
   min-width: 100%;
-  grid-template-columns: repeat(53, minmax(9px, 1fr));
-  gap: 4px;
+  grid-template-columns: repeat(53, minmax(14px, 1fr));
+  gap: 0;
 }
 
 .heatmap-week {
   display: grid;
-  gap: 4px;
-  grid-template-rows: repeat(7, 10px);
+  gap: 0;
+  grid-template-rows: repeat(7, 14px);
 }
 
 .heatmap-day {
-  min-width: 9px;
+  display: grid;
+  min-width: 14px;
+  min-height: 14px;
+  place-items: center;
   padding: 0;
   border: 0;
-  border-radius: 2.5px;
+  background: transparent;
   cursor: pointer;
+}
+
+.heatmap-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2.5px;
   transition: transform 120ms ease, box-shadow 120ms ease;
 }
 
-.heatmap-day:hover,
-.heatmap-day[aria-pressed="true"] {
+.heatmap-day:hover .heatmap-cell,
+.heatmap-day[aria-pressed="true"] .heatmap-cell {
   z-index: 1;
   transform: scale(1.28);
   box-shadow: 0 0 0 1px white, 0 0 0 2px #6e736b;
@@ -481,6 +490,33 @@ p {
   gap: 7px;
 }
 
+.calendar-empty {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 23px;
+  border-bottom: 1px solid var(--border);
+  color: #615bce;
+  background: #f7f6ff;
+}
+
+.calendar-empty span,
+.calendar-empty strong,
+.calendar-empty small {
+  display: block;
+}
+
+.calendar-empty strong {
+  color: var(--text);
+  font-size: 11px;
+}
+
+.calendar-empty small {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
 .icon-button {
   display: grid;
   width: 34px;
@@ -505,6 +541,10 @@ p {
   display: grid;
   min-width: 700px;
   grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-row {
+  display: contents;
 }
 
 .calendar-weekday {
@@ -567,6 +607,18 @@ p {
 .calendar-event span {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.calendar-event-unavailable {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.calendar-event-unavailable small {
+  opacity: .72;
+  font-size: 7px;
+  font-weight: 500;
 }
 
 .event-oa {
@@ -901,6 +953,10 @@ p {
   border-radius: 7px;
   color: #514bc3;
   background: var(--indigo-soft);
+}
+
+.alert-row > .link-unavailable {
+  text-align: right;
 }
 
 .compact-empty {

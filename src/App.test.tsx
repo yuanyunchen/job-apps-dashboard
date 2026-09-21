@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
@@ -37,7 +37,7 @@ const seed: DashboardSeed = {
       role: 'Software Engineer, Agent Platform',
       url: brokenRoleUrl,
       notes: '',
-      oa_due: null,
+      oa_due: '2026-09-22',
       status: 'oa',
       link_status: 'unavailable',
       blurb: 'AI agents for business workflows.',
@@ -110,15 +110,47 @@ describe('Job Apps Dashboard', () => {
     expect(screen.getByRole('heading', { name: /big-tech notify/i })).toBeVisible()
   })
 
+  it('exposes one current navigation destination', async () => {
+    const user = userEvent.setup()
+    render(<App initialData={initialData} />)
+
+    const activity = screen.getByRole('button', { name: 'Activity' })
+    const calendar = screen.getByRole('button', { name: 'Calendar' })
+    expect(activity).toHaveAttribute('aria-current', 'page')
+    expect(calendar).not.toHaveAttribute('aria-current')
+
+    await user.click(calendar)
+
+    expect(calendar).toHaveAttribute('aria-current', 'page')
+    expect(activity).not.toHaveAttribute('aria-current')
+  })
+
+  it('orders the mobile workspace header before the six-control navigation', () => {
+    render(<App initialData={initialData} />)
+
+    const mobileHeader = screen.getByRole('banner', {
+      name: /mobile workspace header/i,
+    })
+    const navigation = screen.getByRole('navigation', {
+      name: /dashboard views/i,
+    })
+
+    expect(
+      mobileHeader.compareDocumentPosition(navigation) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy()
+    expect(within(navigation).getAllByRole('button')).toHaveLength(6)
+  })
+
   it('shows the selected activity day and application count', async () => {
     const user = userEvent.setup()
     render(<App initialData={initialData} />)
 
-    await user.click(
-      screen.getByRole('button', {
-        name: /september 18, 2026: 4 applications/i,
-      }),
-    )
+    const activityDay = screen.getByRole('button', {
+      name: /september 18, 2026: 4 applications/i,
+    })
+    expect(activityDay.querySelector('.heatmap-cell')).not.toBeNull()
+    await user.click(activityDay)
 
     expect(screen.getByText('September 18, 2026')).toBeVisible()
     expect(screen.getByText('4 applications')).toBeVisible()
@@ -132,6 +164,41 @@ describe('Job Apps Dashboard', () => {
     expect(screen.getByText('September 2026')).toBeVisible()
     await user.click(screen.getByRole('button', { name: /next month/i }))
     expect(screen.getByText('October 2026')).toBeVisible()
+    expect(
+      screen.getByText(/no deadlines or interviews this month/i),
+    ).toBeVisible()
+    expect(screen.getByRole('grid', { name: /october 2026/i })).toBeVisible()
+    expect(screen.getByRole('button', { name: /previous month/i })).toBeVisible()
+  })
+
+  it('shows unavailable calendar links visibly and secures external anchors', async () => {
+    const user = userEvent.setup()
+    render(<App initialData={initialData} />)
+
+    await user.click(screen.getByRole('button', { name: /calendar/i }))
+
+    expect(screen.getByText('Link unavailable')).toBeVisible()
+    const safeCalendarLink = screen.getByRole('link', { name: /abridge/i })
+    expect(safeCalendarLink).toHaveAttribute('target', '_blank')
+    expect(safeCalendarLink).toHaveAttribute('rel', 'noreferrer')
+  })
+
+  it('shows unavailable alert links visibly and secures external anchors', async () => {
+    const user = userEvent.setup()
+    render(<App initialData={initialData} />)
+
+    await user.click(screen.getByRole('button', { name: /alerts/i }))
+
+    const neticRow = screen.getByText('Netic').closest('article')
+    expect(neticRow).not.toBeNull()
+    expect(within(neticRow!).getByText('Link unavailable')).toHaveClass(
+      'link-unavailable',
+    )
+    const safeAlertLink = screen.getByRole('link', {
+      name: /view abridge alert role/i,
+    })
+    expect(safeAlertLink).toHaveAttribute('target', '_blank')
+    expect(safeAlertLink).toHaveAttribute('rel', 'noreferrer')
   })
 
   it('renders safe links and labels unavailable links without unsafe anchors', async () => {
@@ -140,9 +207,12 @@ describe('Job Apps Dashboard', () => {
 
     await user.click(screen.getByRole('button', { name: /pending oa/i }))
 
-    expect(
-      screen.getByRole('link', { name: /view abridge role/i }),
-    ).toHaveAttribute('href', pendingRoleUrl)
+    const safePendingLink = screen.getByRole('link', {
+      name: /view abridge role/i,
+    })
+    expect(safePendingLink).toHaveAttribute('href', pendingRoleUrl)
+    expect(safePendingLink).toHaveAttribute('target', '_blank')
+    expect(safePendingLink).toHaveAttribute('rel', 'noreferrer')
     expect(screen.getByText('Link unavailable')).toBeVisible()
     expect(
       screen.queryByRole('link', { name: /software engineer, agent platform/i }),
@@ -162,6 +232,11 @@ describe('Job Apps Dashboard', () => {
     await user.type(screen.getByRole('searchbox'), 'cursor')
     expect(screen.getByText('Cursor')).toBeVisible()
     expect(screen.queryByText('Amazon')).not.toBeInTheDocument()
+    const safeNotifyLink = screen.getByRole('link', {
+      name: /software engineer, generalist/i,
+    })
+    expect(safeNotifyLink).toHaveAttribute('target', '_blank')
+    expect(safeNotifyLink).toHaveAttribute('rel', 'noreferrer')
   })
 
   it('shows a no-results state for notify search', async () => {

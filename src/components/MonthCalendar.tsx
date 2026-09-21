@@ -1,4 +1,9 @@
-import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react'
+import {
+  CalendarCheck2,
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+} from 'lucide-react'
 import { useMemo, useState } from 'react'
 
 import { buildMonth, safeUrl } from '../lib/dashboard'
@@ -41,6 +46,13 @@ export const MonthCalendar = ({
       ),
     [events, visibleMonth],
   )
+  const monthLabel = monthFormatter.format(visibleMonth)
+  const weeks = Array.from({ length: 6 }, (_, index) =>
+    cells.slice(index * 7, index * 7 + 7),
+  )
+  const hasEvents = cells.some(
+    (cell) => cell.inCurrentMonth && cell.events.length > 0,
+  )
 
   const moveMonth = (amount: number) => {
     setVisibleMonth(
@@ -54,7 +66,7 @@ export const MonthCalendar = ({
       <div className="calendar-toolbar">
         <div>
           <p className="eyebrow">Schedule</p>
-          <h2 aria-live="polite">{monthFormatter.format(visibleMonth)}</h2>
+          <h2 aria-live="polite">{monthLabel}</h2>
         </div>
         <div className="calendar-controls">
           <button
@@ -76,52 +88,74 @@ export const MonthCalendar = ({
         </div>
       </div>
 
+      {!hasEvents && (
+        <div className="calendar-empty" role="status">
+          <CalendarCheck2 aria-hidden="true" size={20} />
+          <span>
+            <strong>No deadlines or interviews this month</strong>
+            <small>Use the month controls to review another part of your schedule.</small>
+          </span>
+        </div>
+      )}
+
       <div className="calendar-scroll">
-        <div className="calendar-grid">
-          {weekdays.map((day) => (
-            <div className="calendar-weekday" key={day}>
-              {day}
-            </div>
-          ))}
-          {cells.map((cell) => (
-            <div
-              className="calendar-cell"
-              data-outside={!cell.inCurrentMonth}
-              key={cell.date}
-            >
-              <time dateTime={cell.date}>
-                <span className="sr-only">
-                  {dayFormatter.format(new Date(`${cell.date}T12:00:00`))}
-                </span>
-                <span aria-hidden="true">{cell.day}</span>
-              </time>
-              <div className="calendar-events">
-                {cell.events.map((event) => {
-                  const url = safeUrl(event.url, brokenUrls)
-                  const label = `${event.company} · ${event.role}`
-                  return url ? (
-                    <a
-                      className={`calendar-event event-${event.type}`}
-                      href={url}
-                      key={event.id}
-                      rel="noreferrer"
-                      target="_blank"
-                      title={label}
-                    >
-                      <span>{event.company}</span>
-                      <ExternalLink aria-hidden="true" size={10} />
-                    </a>
-                  ) : (
-                    <span
-                      className={`calendar-event event-${event.type}`}
-                      key={event.id}
-                      title={`${label} · Link unavailable`}
-                    >
-                      {event.company}
-                    </span>
-                  )
-                })}
+        <div
+          aria-label={`${monthLabel} calendar`}
+          className="calendar-grid"
+          role="grid"
+        >
+          <div className="calendar-row" role="row">
+            {weekdays.map((day) => (
+              <div className="calendar-weekday" key={day} role="columnheader">
+                {day}
               </div>
+            ))}
+          </div>
+          {weeks.map((week) => (
+            <div className="calendar-row" key={week[0]?.date} role="row">
+              {week.map((cell) => (
+                <div
+                  aria-label={dayFormatter.format(
+                    new Date(`${cell.date}T12:00:00`),
+                  )}
+                  className="calendar-cell"
+                  data-outside={!cell.inCurrentMonth}
+                  key={cell.date}
+                  role="gridcell"
+                >
+                  <time dateTime={cell.date}>
+                    <span aria-hidden="true">{cell.day}</span>
+                  </time>
+                  <div className="calendar-events">
+                    {cell.events.map((event) => {
+                      const url = safeUrl(event.url, brokenUrls)
+                      const label = `${event.company} · ${event.role}`
+                      return url ? (
+                        <a
+                          className={`calendar-event event-${event.type}`}
+                          href={url}
+                          key={event.id}
+                          rel="noreferrer"
+                          target="_blank"
+                          title={label}
+                        >
+                          <span>{event.company}</span>
+                          <ExternalLink aria-hidden="true" size={10} />
+                        </a>
+                      ) : (
+                        <span
+                          className={`calendar-event calendar-event-unavailable event-${event.type}`}
+                          key={event.id}
+                          title={label}
+                        >
+                          <span>{event.company}</span>
+                          <small>Link unavailable</small>
+                        </span>
+                      )
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
           ))}
         </div>
