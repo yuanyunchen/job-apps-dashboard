@@ -152,7 +152,7 @@ export const MonthCalendar = ({
                         </a>
                       ) : (
                         <span
-                          aria-label={label}
+                          aria-label={`${label} · Link unavailable`}
                           className={`calendar-event calendar-event-unavailable event-${event.type}`}
                           key={event.id}
                           title={label}

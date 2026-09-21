@@ -256,6 +256,16 @@ describe('Job Apps Dashboard', () => {
     await user.click(screen.getByRole('button', { name: /calendar/i }))
 
     expect(screen.getByText('Link unavailable')).toBeVisible()
+    const unavailableEvent = screen.getByLabelText(
+      'Netic · Software Engineer, Agent Platform · Link unavailable',
+    )
+    expect(unavailableEvent).toBeVisible()
+    expect(unavailableEvent.tagName).toBe('SPAN')
+    expect(
+      screen.queryByRole('link', {
+        name: /netic · software engineer, agent platform/i,
+      }),
+    ).not.toBeInTheDocument()
     const safeCalendarLink = screen.getByRole('link', {
       name: /abridge · software engineer, early career/i,
     })

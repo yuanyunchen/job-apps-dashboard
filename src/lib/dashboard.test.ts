@@ -97,6 +97,29 @@ describe('buildHeatmap', () => {
         ),
     ).toBe(true)
   })
+
+  it('keeps calendar dates consecutive across New York spring DST', () => {
+    const previousTimezone = process.env.TZ
+    process.env.TZ = 'America/New_York'
+
+    try {
+      const finalWeek = buildHeatmap({}, '2026-03-09').at(-1)
+
+      expect(finalWeek?.startDate).toBe('2026-03-08')
+      expect(finalWeek?.days.map((day) => day.date)).toEqual([
+        '2026-03-08',
+        '2026-03-09',
+        '2026-03-10',
+        '2026-03-11',
+        '2026-03-12',
+        '2026-03-13',
+        '2026-03-14',
+      ])
+    } finally {
+      if (previousTimezone === undefined) delete process.env.TZ
+      else process.env.TZ = previousTimezone
+    }
+  })
 })
 
 describe('buildMonth', () => {

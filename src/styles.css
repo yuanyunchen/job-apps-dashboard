@@ -571,7 +571,7 @@ p {
 
 .calendar-cell[data-outside="true"] {
   background: #fafaf8;
-  color: #b2b4ae;
+  color: #666b63;
 }
 
 .calendar-cell time {
@@ -624,7 +624,6 @@ p {
 .calendar-event-role {
   font-size: 11px;
   font-weight: 500;
-  opacity: .82;
 }
 
 .calendar-event-unavailable {
@@ -634,7 +633,6 @@ p {
 }
 
 .calendar-event-unavailable small {
-  opacity: .72;
   font-size: 11px;
   font-weight: 500;
 }
@@ -646,7 +644,7 @@ p {
 }
 
 .event-interview {
-  color: #b95846;
+  color: #8f3f31;
   border-color: var(--coral);
   background: var(--coral-soft);
 }
