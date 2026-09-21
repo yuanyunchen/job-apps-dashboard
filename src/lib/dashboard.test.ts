@@ -27,6 +27,37 @@ const makeSeed = (overrides: Record<string, unknown> = {}) => ({
   ...overrides,
 })
 
+const validPendingApplication = {
+  company: 'Example',
+  role: 'Software Engineer',
+  url: 'https://example.com/job',
+  notes: '',
+  oa_due: null,
+  status: 'oa',
+  link_status: 'ok',
+  blurb: 'Example company.',
+}
+
+const validLinkCheck = {
+  bad: [],
+  codes: {},
+  checked: 0,
+}
+
+const stubDashboardFetch = (
+  seed: unknown,
+  linkCheck: unknown = validLinkCheck,
+) => {
+  const fetchMock = vi
+    .fn()
+    .mockResolvedValueOnce(new Response(JSON.stringify(seed), { status: 200 }))
+    .mockResolvedValueOnce(
+      new Response(JSON.stringify(linkCheck), { status: 200 }),
+    )
+  vi.stubGlobal('fetch', fetchMock)
+  return fetchMock
+}
+
 describe('safeUrl', () => {
   it('keeps a valid HTTPS job URL', () => {
     expect(safeUrl('https://example.com/job', new Set())).toBe(
@@ -226,6 +257,77 @@ describe('loadDashboardData', () => {
 
     await expect(loadDashboardData()).rejects.toThrow(
       'Invalid dashboard seed data',
+    )
+  })
+
+  it.each([
+    {
+      name: 'daily applied count',
+      overrides: { daily_applied_counts: { '2026-09-21': '31' } },
+    },
+    {
+      name: 'status total',
+      overrides: { status_totals: { applied: '140' } },
+    },
+    {
+      name: 'pending OA item',
+      overrides: { pending_oa: [null] },
+    },
+    {
+      name: 'pending interview field',
+      overrides: {
+        pending_interviews: [
+          { ...validPendingApplication, role: 42, interview_date: null },
+        ],
+      },
+    },
+    {
+      name: 'notified company',
+      overrides: { notified_by_company: { Google: null } },
+    },
+    {
+      name: 'notified company roles',
+      overrides: {
+        notified_by_company: {
+          Google: { blurb: 'Search and cloud.', roles: null },
+        },
+      },
+    },
+    {
+      name: 'notified role',
+      overrides: {
+        notified_by_company: {
+          Google: {
+            blurb: 'Search and cloud.',
+            roles: [{ role: 'Engineer', url: 42 }],
+          },
+        },
+      },
+    },
+    {
+      name: 'link-check code',
+      overrides: { link_check_codes: { 'https://example.com/job': 404 } },
+    },
+    {
+      name: 'company blurb',
+      overrides: { company_blurbs: { Google: 42 } },
+    },
+  ])('rejects a malformed nested $name', async ({ overrides }) => {
+    stubDashboardFetch(makeSeed(overrides))
+
+    await expect(loadDashboardData()).rejects.toThrow(
+      'Invalid dashboard seed data',
+    )
+  })
+
+  it('rejects malformed nested link-check codes', async () => {
+    stubDashboardFetch(makeSeed(), {
+      ...validLinkCheck,
+      codes: { 'https://example.com/job': 404 },
+    })
+
+    await expect(loadDashboardData()).rejects.toThrow(
+      'Invalid dashboard link-check data',
     )
   })
 })

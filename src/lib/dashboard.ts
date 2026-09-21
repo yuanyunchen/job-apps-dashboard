@@ -48,6 +48,50 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 const isStringArray = (value: unknown): value is string[] =>
   Array.isArray(value) && value.every((item) => typeof item === 'string')
 
+const isNumberRecord = (value: unknown): value is Record<string, number> =>
+  isRecord(value) &&
+  Object.values(value).every(
+    (item) => typeof item === 'number' && Number.isFinite(item),
+  )
+
+const isStringRecord = (value: unknown): value is Record<string, string> =>
+  isRecord(value) &&
+  Object.values(value).every((item) => typeof item === 'string')
+
+const isNullableString = (value: unknown): value is string | null =>
+  value === null || typeof value === 'string'
+
+const isOptionalNullableString = (
+  value: unknown,
+): value is string | null | undefined =>
+  value === undefined || isNullableString(value)
+
+const isPendingApplication = (value: unknown): boolean =>
+  isRecord(value) &&
+  typeof value.company === 'string' &&
+  typeof value.role === 'string' &&
+  isNullableString(value.url) &&
+  typeof value.notes === 'string' &&
+  isOptionalNullableString(value.oa_due) &&
+  isOptionalNullableString(value.interview_date) &&
+  typeof value.status === 'string' &&
+  typeof value.link_status === 'string' &&
+  typeof value.blurb === 'string'
+
+const isNotifiedRole = (value: unknown): boolean =>
+  isRecord(value) &&
+  typeof value.role === 'string' &&
+  isNullableString(value.url)
+
+const isNotifiedCompany = (value: unknown): boolean =>
+  isRecord(value) &&
+  typeof value.blurb === 'string' &&
+  Array.isArray(value.roles) &&
+  value.roles.every(isNotifiedRole)
+
+const isNotifiedCompanyRecord = (value: unknown): boolean =>
+  isRecord(value) && Object.values(value).every(isNotifiedCompany)
+
 const isDashboardSeed = (value: unknown): value is DashboardSeed => {
   if (!isRecord(value)) return false
 
@@ -55,15 +99,18 @@ const isDashboardSeed = (value: unknown): value is DashboardSeed => {
     typeof value.generated_at === 'string' &&
     typeof value.timezone === 'string' &&
     isStringArray(value.notify_only_companies) &&
-    isRecord(value.daily_applied_counts) &&
-    isRecord(value.status_totals) &&
+    isNumberRecord(value.daily_applied_counts) &&
+    isNumberRecord(value.status_totals) &&
     Array.isArray(value.pending_oa) &&
+    value.pending_oa.every(isPendingApplication) &&
     Array.isArray(value.pending_interviews) &&
-    isRecord(value.notified_by_company) &&
+    value.pending_interviews.every(isPendingApplication) &&
+    isNotifiedCompanyRecord(value.notified_by_company) &&
     typeof value.notified_count === 'number' &&
+    Number.isFinite(value.notified_count) &&
     isStringArray(value.broken_urls) &&
-    isRecord(value.link_check_codes) &&
-    isRecord(value.company_blurbs)
+    isStringRecord(value.link_check_codes) &&
+    isStringRecord(value.company_blurbs)
   )
 }
 
@@ -72,8 +119,9 @@ const isLinkCheckData = (value: unknown): value is LinkCheckData => {
 
   return (
     isStringArray(value.bad) &&
-    isRecord(value.codes) &&
-    typeof value.checked === 'number'
+    isStringRecord(value.codes) &&
+    typeof value.checked === 'number' &&
+    Number.isFinite(value.checked)
   )
 }
 
