@@ -1,0 +1,674 @@
+{
+  "generated_at": "2026-09-21T17:20:07.805295-04:00",
+  "timezone": "America/New_York",
+  "notify_only_companies": [
+    "adobe",
+    "amazon",
+    "anthropic",
+    "apple",
+    "cursor",
+    "databricks",
+    "deepmind",
+    "doordash",
+    "facebook",
+    "google",
+    "linkedin",
+    "meta",
+    "microsoft",
+    "netflix",
+    "nvidia",
+    "openai",
+    "scale",
+    "scale ai",
+    "snowflake",
+    "stripe",
+    "tesla",
+    "uber",
+    "xai"
+  ],
+  "daily_applied_counts": {
+    "2026-09-18": 109,
+    "2026-09-21": 31
+  },
+  "status_totals": {
+    "notified": 123,
+    "skipped": 874,
+    "applied": 140,
+    "pipeline": 1728,
+    "oa": 3,
+    "closed": 6,
+    "parked": 23,
+    "blocked": 35
+  },
+  "pending_oa": [
+    {
+      "company": "Abridge",
+      "role": "Software Engineer, Early Career",
+      "url": "https://app.joinhandshake.com/jobs/11362875",
+      "notes": "Verified live Handshake job page; $160k-$180k base, SF onsite, explicitly eligible for visa sponsorship and OPT/CPT. AI healthcare platform; TC may reach target with equity/benefits but not stated.; Applied via Handshake Quick Apply; attached resume-yunchen-yuan.pdf; Handshake confirmed application submitted. | Mail Bot: CoderPad OA received 2026-09-18; source=email; date=2026-09-18; deadline\u22482026",
+      "oa_due": null,
+      "status": "oa",
+      "link_status": "ok",
+      "blurb": "AI clinical documentation for healthcare."
+    },
+    {
+      "company": "Netic",
+      "role": "Full-Stack Software Engineer (Product) - New Grad - 2026-2027",
+      "url": "https://jobs.ashbyhq.com/netic/bab5d1e5-e31b-42f0-9cef-334b1f17fed3",
+      "notes": "San Francisco; multiple hires; start winter 2026 through summer 2027; product engineering putting AI into business workflows.; Parked 2026-09-18 Apply Bot C: needs SF 5-day office answer + most interesting paper/blog/docs past month. Resume uploaded; sponsorship Yes; start 01/01/2027.; unparked 2026-09-18T14:00:41-04:00 \u2014 use ethan-answers.md | Applied Ashby; soft Qs answered from ethan-answers. |",
+      "oa_due": null,
+      "status": "oa",
+      "link_status": "ok",
+      "blurb": "AI agents for business workflows (SF)."
+    },
+    {
+      "company": "Netic",
+      "role": "Software Engineer (Agent Platform) - New Grad - 2026-2027",
+      "url": "https://jobs.ashbyhq.com/netic/d9bcb6a2-0e54-4cb3-baec-43f2d74db18f",
+      "notes": "San Francisco; new-grad agent/platform engineering; start winter 2026 through summer 2027; verify sponsorship. | 2026-09-18 Job Apply Bot: parked \u2014 required Q \u201cmost interesting paper/blog/docs past month?\u201d; unparked 2026-09-18T14:00:41-04:00 \u2014 use ethan-answers.md | 2026-09-18 Job Apply Bot: Ashby submitted (ethan-answers soft Q) | Mail Bot: Netic Coderbyte OA invite 2026-09-18 (company-level; sou",
+      "oa_due": null,
+      "status": "oa",
+      "link_status": "ok",
+      "blurb": "AI agents for business workflows (SF)."
+    }
+  ],
+  "pending_interviews": [],
+  "notified_by_company": {
+    "NVIDIA": {
+      "blurb": "GPUs & AI systems.",
+      "roles": [
+        {
+          "role": "Applied Machine Learning Engineer, Circuit Design - New College Grad 2026",
+          "url": "https://jobs.nvidia.com/careers/job/893392916064"
+        },
+        {
+          "role": "Applied Systems Engineering Rotation Engineer - New College Graduate 2026",
+          "url": "https://jobs.nvidia.com/careers/job/893397529283"
+        },
+        {
+          "role": "Software Engineer, Coding Agent Harness Engineering - New College Grad 2026",
+          "url": "https://www.linkedin.com/jobs/view/4467131530/"
+        },
+        {
+          "role": "Software Engineer, CUDA Deep Learning Systems",
+          "url": "https://www.linkedin.com/jobs/view/4449328460/"
+        },
+        {
+          "role": "Software R&D Engineer \u2013 New College Grad 2026 - VLSI Physical Design",
+          "url": "https://simplify.jobs/jobs?q=new+grad+2026&functions=Software+Engineering&sort=recent&job=29d56cce-6d8e-4fac-aeb4-7c14135e0b12"
+        },
+        {
+          "role": "AI GPU Power Architect - New College Grad 2026",
+          "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/nvidiaexternalcareersite/job/US-CA-Santa-Clara/GPU-Power-Architect---New-College-Grad-2026_JR2017169"
+        },
+        {
+          "role": "Applied Machine Learning Engineer \u2013 New College Grad 2026 - Circuit Design",
+          "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/Applied-Machine-Learning-Engineer--Circuit-Design---New-College-Grad-2026_JR2011517"
+        },
+        {
+          "role": "Software Engineer, Deep Learning Libraries - New College Graduate 2026",
+          "url": "https://jobs.nvidia.com/careers/job/893397020477"
+        },
+        {
+          "role": "Software Engineer, AI Networking - New College Grad 2026",
+          "url": "https://jobs.nvidia.com/careers/job/893394887129"
+        },
+        {
+          "role": "Developer Technology Engineer, AI - New College Grad 2026",
+          "url": "https://jobs.nvidia.com/careers/job/893393807738"
+        },
+        {
+          "role": "Software R&D Engineer - VLSI Physical Design - New College Grad 2026",
+          "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/nvidiaexternalcareersite/job/US-TX-Austin/Software-R-D-Engineer--VLSI-Physical-Design---New-College-Grad-2026_JR2019330"
+        },
+        {
+          "role": "Systems Software Engineer - New College Grad 2026",
+          "url": "https://jobs.nvidia.com/careers/job/893395087798"
+        },
+        {
+          "role": "Software Engineer, Hardware Tools and Methodology - New College Grad 2026",
+          "url": "https://jobs.nvidia.com/careers/job/893395241786"
+        },
+        {
+          "role": "System Software Engineer - Trusted Firmware",
+          "url": "https://www.linkedin.com/jobs/view/4455493096/"
+        },
+        {
+          "role": "Software Engineer, Hardware Tools and Methodology - New College Grad 2026",
+          "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/Software-Engineer--Hardware-Tools-and-Methodology---New-College-Grad-2026_JR2018659"
+        },
+        {
+          "role": "AI Compiler Engineer - New College Grad 2027",
+          "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/AI-Compiler-Engineer--New-College-Grad-2027_JR2026011"
+        }
+      ]
+    },
+    "Amazon": {
+      "blurb": "E-commerce & AWS.",
+      "roles": [
+        {
+          "role": "Applied Scientist I",
+          "url": "https://www.amazon.jobs/en/jobs/10507927/applied-scientist-i-cmt"
+        },
+        {
+          "role": "Software Development Engineer Early Career - Amazon Leo",
+          "url": "https://simplify.jobs/jobs?q=early+career+machine+learning&functions=Software+Engineering&sort=recent&job=9ecb4578-6a8a-4f73-ac53-0651cbbd7167"
+        },
+        {
+          "role": "Software Development Engineer - Early Career",
+          "url": "https://www.amazon.jobs/jobs/10530257"
+        },
+        {
+          "role": "Software Development Engineer - Early Career",
+          "url": "https://www.amazon.jobs/jobs/10529830"
+        },
+        {
+          "role": "Software Development Engineer - Amazon Leo - Early Career - 2026",
+          "url": "https://www.amazon.jobs/jobs/10513110/apply"
+        },
+        {
+          "role": "Software Engineer - AWS SageMaker Unified Studio",
+          "url": "https://www.amazon.jobs/jobs/10551396/apply"
+        },
+        {
+          "role": "Software Development Engineer - Catalog System Services - SPCL",
+          "url": "https://www.amazon.jobs/jobs/10539357/apply"
+        },
+        {
+          "role": "Software Development Engineer - AWS Security",
+          "url": "https://www.amazon.jobs/jobs/10544608/apply"
+        },
+        {
+          "role": "Software Dev Engineer I - Graviton Software - Annapurna Labs",
+          "url": "https://www.amazon.jobs/jobs/10526808/apply"
+        },
+        {
+          "role": "Software Development Engineer I - ML Infra Services - Annapurna Labs",
+          "url": "https://www.amazon.jobs/jobs/10464055/apply"
+        },
+        {
+          "role": "Software Engineer I - Memberships",
+          "url": "https://www.amazon.jobs/jobs/10515912/apply"
+        },
+        {
+          "role": "Software Engineer I - Payments",
+          "url": "https://www.amazon.jobs/jobs/10502486/apply"
+        },
+        {
+          "role": "Software Engineer I - Discovery",
+          "url": "https://www.amazon.jobs/jobs/10468973/apply"
+        },
+        {
+          "role": "EFA Network Software Engineer I - Annapurna Labs",
+          "url": "https://www.amazon.jobs/jobs/10481932/apply"
+        },
+        {
+          "role": "Front End Engineer - AWS Agentic AI Automated Reasoning - AR",
+          "url": "https://www.amazon.jobs/jobs/10515062/apply"
+        },
+        {
+          "role": "Applied Scientist I, Alexa Shopping",
+          "url": "https://www.amazon.jobs/jobs/10544180/apply"
+        },
+        {
+          "role": "Software Development Engineer, SageMaker HyperPod Data Plane",
+          "url": "https://www.amazon.jobs/jobs/10517662/apply"
+        },
+        {
+          "role": "Software Development Engineer I \u2013 AI/ML Network Infrastructure, Annapurna Labs",
+          "url": "https://www.amazon.jobs/jobs/10490741/apply"
+        },
+        {
+          "role": "Software Development Engineer, AWS Data Services - 2026 (US)",
+          "url": "https://www.amazon.jobs/jobs/10414316/apply"
+        },
+        {
+          "role": "Software Development Engineer - 2026 (US)",
+          "url": "https://www.amazon.jobs/jobs/3177934/apply"
+        },
+        {
+          "role": "Machine Learning Engineer, Amazon Ads Identity",
+          "url": "https://www.amazon.jobs/jobs/10532410/apply"
+        },
+        {
+          "role": "Software Development Engineer \u2013 Embedded Systems 2026 (US)",
+          "url": "https://www.amazon.jobs/jobs/3183020/apply"
+        },
+        {
+          "role": "Front-End Engineer II - ECR",
+          "url": "https://www.amazon.jobs/jobs/10535497/apply"
+        },
+        {
+          "role": "Software Development Engineer - iOS",
+          "url": "https://www.amazon.jobs/jobs/10535234/apply"
+        },
+        {
+          "role": "Front End Engineer - Amazon Leo",
+          "url": "https://www.amazon.jobs/jobs/10532696/apply"
+        },
+        {
+          "role": "Front End Engineer - IAM Console Team",
+          "url": "https://www.amazon.jobs/jobs/10524274/apply"
+        },
+        {
+          "role": "Front-End Engineer II - Amplify Console",
+          "url": "https://www.amazon.jobs/jobs/10539314/apply"
+        },
+        {
+          "role": "Front-End Engineer - Amazon Connect - AWS",
+          "url": "https://www.amazon.jobs/jobs/10508283/apply"
+        },
+        {
+          "role": "Software Development Engineer - Reporting Data Platform",
+          "url": "https://www.amazon.jobs/jobs/10519658/apply"
+        },
+        {
+          "role": "Front End Engineer - Amazon Leo",
+          "url": "https://www.amazon.jobs/en/jobs/10528841"
+        },
+        {
+          "role": "Front End Engineer II - Amazon Leo",
+          "url": "https://www.amazon.jobs/en/jobs/10528846"
+        },
+        {
+          "role": "Front End Engineer II - Amazon Leo",
+          "url": "https://www.amazon.jobs/en/jobs/10532697"
+        },
+        {
+          "role": "Front-End Engineer - Amazon Connect - AWS",
+          "url": "https://www.amazon.jobs/en/jobs/10510073"
+        },
+        {
+          "role": "Software Development Engineer - iOS",
+          "url": "https://www.amazon.jobs/en/jobs/10505107"
+        },
+        {
+          "role": "Front-End Engineer II - ECR",
+          "url": "https://www.amazon.jobs/en/jobs/10501516"
+        },
+        {
+          "role": "Application Builder - Blink Subs + ai",
+          "url": "https://www.amazon.jobs/en/jobs/10514428"
+        },
+        {
+          "role": "Software Development Engineer, Platform Engineering and Emerging Technologies",
+          "url": "https://www.amazon.jobs/jobs/10552635/software-development-engineer-platform-engineering-and-emerging-technologies"
+        }
+      ]
+    },
+    "Anthropic": {
+      "blurb": "Frontier AI safety / Claude.",
+      "roles": [
+        {
+          "role": "Anthropic Fellows Program, AI Safety & Security",
+          "url": "https://www.linkedin.com/jobs/view/4400793537/"
+        },
+        {
+          "role": "Research Engineer, Interpretability",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/4980430008"
+        },
+        {
+          "role": "Research Engineer, Takeoff Intel",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5416882008"
+        }
+      ]
+    },
+    "Scale AI": {
+      "blurb": "Data / eval for AI.",
+      "roles": [
+        {
+          "role": "ML Research Engineer, ML Systems",
+          "url": "https://app.joinhandshake.com/jobs/10245229"
+        },
+        {
+          "role": "Software Engineer - New Grad",
+          "url": "https://scale.com/careers/4730836005"
+        },
+        {
+          "role": "Software Engineer - New Grad",
+          "url": "https://job-boards.greenhouse.io/scaleai/jobs/4730836005"
+        },
+        {
+          "role": "Software Engineer - New Grad",
+          "url": "https://job-boards.greenhouse.io/scaleai/jobs/4730862005"
+        },
+        {
+          "role": "Infrastructure Software Engineer, Enterprise GenAI",
+          "url": "https://job-boards.greenhouse.io/scaleai/jobs/4665557005"
+        },
+        {
+          "role": "ML Research Engineer, ML Systems",
+          "url": "https://job-boards.greenhouse.io/scaleai/jobs/4534631005"
+        }
+      ]
+    },
+    "Stripe": {
+      "blurb": "Payments infrastructure.",
+      "roles": [
+        {
+          "role": "Software Engineer, New Grad",
+          "url": "https://stripe.com/jobs/search?gh_jid=8160776"
+        },
+        {
+          "role": "Software Engineer, New Grad",
+          "url": "https://stripe.com/jobs/search?gh_jid=8128744"
+        },
+        {
+          "role": "Software Engineer, New Grad",
+          "url": "https://stripe.com/jobs/search?gh_jid=8157838"
+        },
+        {
+          "role": "Software Engineer, Early Career \u2014 Immediate Start",
+          "url": "https://stripe.com/jobs/search?gh_jid=8212508"
+        },
+        {
+          "role": "Software Engineer, New Grad",
+          "url": "https://stripe.com/jobs/search?gh_jid=8128744"
+        },
+        {
+          "role": "Machine Learning Engineer",
+          "url": "https://stripe.com/jobs/search?gh_jid=8137997"
+        }
+      ]
+    },
+    "OpenAI": {
+      "blurb": "Frontier AI models.",
+      "roles": [
+        {
+          "role": "Applied Emerging Talent Software Engineer",
+          "url": "https://openai.com/careers/emerging-talent/"
+        },
+        {
+          "role": "Software Engineer, Applied Emerging Talent (2027)",
+          "url": "https://jobs.ashbyhq.com/openai/55150071-fce8-48f5-aea4-14ed78b83511"
+        },
+        {
+          "role": "Applied AI Engineer, Enterprise",
+          "url": "https://openai.com/careers/applied-ai-engineer-enterprise-san-francisco/"
+        },
+        {
+          "role": "Software Engineer, Cooperative AI",
+          "url": "https://jobs.ashbyhq.com/openai/7613aca3-9dd8-41cd-b114-06ef4de967a9/application?source=LinkedIn"
+        },
+        {
+          "role": "Software Engineer, Accelerators",
+          "url": "https://jobs.ashbyhq.com/openai/f386b209-1259-4b79-bf5a-aa97fc7ce77b"
+        },
+        {
+          "role": "Applied AI Engineer, Enterprise",
+          "url": "https://jobs.ashbyhq.com/openai/01091aed-427d-4e10-8cdb-fb500cf55bb9"
+        },
+        {
+          "role": "Applied AI Engineer, Codex Core Agent",
+          "url": "https://jobs.ashbyhq.com/openai/577e6673-0a4a-491b-9a0d-facbdd3bdf3c"
+        }
+      ]
+    },
+    "DoorDash": {
+      "blurb": "Food delivery marketplace.",
+      "roles": [
+        {
+          "role": "Software Engineer 1",
+          "url": "https://simplify.jobs/p/cb54a03c-1819-40d6-85dd-7c94b79b337e/Software-Engineer-1"
+        },
+        {
+          "role": "Software Engineer I, Entry-Level (Graduation Date: Fall 2026-Summer 2027) - US",
+          "url": "https://job-boards.greenhouse.io/doordashusa/jobs/8163709"
+        },
+        {
+          "role": "Software Engineer, Full Stack - Developer Insights",
+          "url": "https://www.linkedin.com/jobs/view/4466235207/"
+        },
+        {
+          "role": "Software Engineer, Data and AI Platform",
+          "url": "https://job-boards.greenhouse.io/doordashusa/jobs/8171620"
+        }
+      ]
+    },
+    "Uber": {
+      "blurb": "Mobility & delivery marketplace.",
+      "roles": [
+        {
+          "role": "Graduate 2026 Software Engineer 1",
+          "url": "https://simplify.jobs/p/167011d6-2c70-486b-a5d7-75d2e39b0efe/Graduate-2026-Software-Engineer-1"
+        }
+      ]
+    },
+    "Google": {
+      "blurb": "Big tech / search & cloud.",
+      "roles": [
+        {
+          "role": "Software Engineer - Early Career - Campus",
+          "url": "https://www.google.com/about/careers/applications/jobs/results/78703249065943750"
+        },
+        {
+          "role": "Software Engineer, Early Career, Campus",
+          "url": "https://www.linkedin.com/jobs/view/4448770207/"
+        },
+        {
+          "role": "Software Engineer",
+          "url": "https://www.google.com/about/careers/applications/jobs/results/106684387621249734"
+        },
+        {
+          "role": "Data Engineer - Google Maps",
+          "url": "https://www.google.com/about/careers/applications/jobs/results/72704944984990406"
+        },
+        {
+          "role": "Software Engineer, Generative Media AI, Apparel ML",
+          "url": "https://careers.google.com/jobs/results/128378670086529734-software-engineer"
+        },
+        {
+          "role": "Software Engineer, Early Career, Campus",
+          "url": "https://careers.google.com/jobs/results/78703249065943750-software-engineer/?src=Online/LinkedIn/linkedin_us&utm_source=linkedin&utm_medium=jobposting&utm_campaign=contract"
+        }
+      ]
+    },
+    "Microsoft": {
+      "blurb": "Cloud / productivity / AI.",
+      "roles": [
+        {
+          "role": "Software Engineer - CoreAI",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393556989020"
+        },
+        {
+          "role": "Quantum Engineer - Artificial Intelligence and Devices",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393556998613"
+        },
+        {
+          "role": "Data Scientist",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393556941429"
+        },
+        {
+          "role": "Software Engineer- CoreAI",
+          "url": "https://www.linkedin.com/jobs/view/4466084722/"
+        },
+        {
+          "role": "Cloud Network Engineer II",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393556953139"
+        },
+        {
+          "role": "Solution Engineer - AI Business Process",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393556866541"
+        }
+      ]
+    },
+    "Apple": {
+      "blurb": "Consumer hardware & services.",
+      "roles": [
+        {
+          "role": "Machine Learning Video Codec Algorithm Engineer",
+          "url": "https://jobs.apple.com/en-us/details/200656320-0836/machine-learning-video-codec-algorithm-engineer"
+        },
+        {
+          "role": "Software Development Engineer in Test - Core I/O Transports Quality Engineering",
+          "url": "https://jobs.apple.com/en-us/details/200665472-0836"
+        },
+        {
+          "role": "Software Development Engineer in Test - Core I/O Transports Quality Engineering",
+          "url": "https://jobs.apple.com/en-us/details/200665480-0836"
+        }
+      ]
+    },
+    "Adobe": {
+      "blurb": "Creative cloud software.",
+      "roles": [
+        {
+          "role": "Software Development Engineer",
+          "url": "https://careers.adobe.com/us/en/job/ADOBUSR171675EXTERNALENUS/Software-Development-Engineer?utm_source=linkedin&utm_medium=phenom-feeds&source=LinkedIn"
+        },
+        {
+          "role": "Quality Engineering Developer - Mobile",
+          "url": "https://adobe.wd5.myworkdayjobs.com/en-US/external_experienced/job/San-Jose/Quality-Engineering-Developer---Mobile_R171332"
+        }
+      ]
+    },
+    "Tailscale": {
+      "blurb": "Tech / AI company.",
+      "roles": [
+        {
+          "role": "Software Engineer, Networking (Edge)",
+          "url": "https://job-boards.greenhouse.io/tailscale/jobs/4733095005"
+        },
+        {
+          "role": "Software Engineer, Strategic Projects",
+          "url": "https://job-boards.greenhouse.io/tailscale/jobs/4721714005"
+        }
+      ]
+    },
+    "LinkedIn": {
+      "blurb": "Professional network (Microsoft).",
+      "roles": [
+        {
+          "role": "Software Engineer - AI Platform",
+          "url": "https://www.linkedin.com/jobs/view/4465588693/"
+        }
+      ]
+    },
+    "Snowflake": {
+      "blurb": "Cloud data warehouse.",
+      "roles": [
+        {
+          "role": "Software Engineer (AI-Native), Database Engineering",
+          "url": "https://www.linkedin.com/jobs/view/4421321172/"
+        },
+        {
+          "role": "Software Engineer - Backend",
+          "url": "https://jobs.ashbyhq.com/snowflake/3eb872af-0ab1-4986-8f72-e7321fcd1538"
+        },
+        {
+          "role": "Software Engineer - Database Engineering",
+          "url": "https://jobs.ashbyhq.com/snowflake/db1375f0-ea5d-404a-b640-259f94dbc995"
+        }
+      ]
+    },
+    "Cursor": {
+      "blurb": "AI code editor (Anysphere).",
+      "roles": [
+        {
+          "role": "Software Engineer, Generalist",
+          "url": "https://jobs.ashbyhq.com/cursor/36e69353-0452-4bf6-9f35-b1e7307959a7"
+        },
+        {
+          "role": "Software Engineer, Product ",
+          "url": "https://jobs.ashbyhq.com/cursor/3551cdaa-cf08-4c04-adbe-a968185bc769"
+        },
+        {
+          "role": "Software Engineer, Developer Productivity",
+          "url": "https://jobs.ashbyhq.com/cursor/010063bd-6083-4fc0-a455-e6f0193b5347"
+        },
+        {
+          "role": "Software Engineer, Growth ",
+          "url": "https://jobs.ashbyhq.com/cursor/0ec39ed7-a5dc-4551-bb26-b7f4f9fb4a74"
+        },
+        {
+          "role": "Software Engineer, ML Research ",
+          "url": "https://jobs.ashbyhq.com/cursor/0aa0650b-f93c-416e-9e2f-4fdf1556fd14"
+        },
+        {
+          "role": "Software Engineer, ML Platform",
+          "url": "https://jobs.ashbyhq.com/cursor/167f0e93-6915-4d56-803a-be89d1441fb5"
+        },
+        {
+          "role": "Software Engineer, ML Infrastructure",
+          "url": "https://jobs.ashbyhq.com/cursor/c66cde5e-9cb6-4a2e-a330-9323e1edf2a9"
+        },
+        {
+          "role": "Software Engineer, Agent Evaluation and Quality",
+          "url": "https://jobs.ashbyhq.com/cursor/2bbe9f02-83a5-4173-98be-9085d1cb5693"
+        },
+        {
+          "role": "Software Engineer, Agent Harness",
+          "url": "https://jobs.ashbyhq.com/cursor/6e6f5bc2-eb32-40e2-bba9-cfa56479600d"
+        },
+        {
+          "role": "Software Engineer, RL Environments",
+          "url": "https://jobs.ashbyhq.com/cursor/c68b3d8f-360d-41f0-84fd-1cb225b19e23"
+        },
+        {
+          "role": "Software Engineer, RL Data ",
+          "url": "https://jobs.ashbyhq.com/cursor/9a175381-45e2-42b6-bd64-6c84532365f9"
+        },
+        {
+          "role": "Software Engineer, Core Services",
+          "url": "https://jobs.ashbyhq.com/cursor/77bf35db-119c-4533-8187-1e8d5ae08c45"
+        }
+      ]
+    },
+    "xAI": {
+      "blurb": "Elon Musk AI lab.",
+      "roles": [
+        {
+          "role": "Exceptional Software Engineer",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/4956028007"
+        },
+        {
+          "role": "Machine Learning Engineer - Ads",
+          "url": "https://job-boards.greenhouse.io/xai/jobs/4996796007"
+        }
+      ]
+    }
+  },
+  "notified_count": 117,
+  "broken_urls": [
+    "https://www.amazon.jobs/jobs/10442923/apply",
+    "https://www.amazon.jobs/jobs/10459443/apply",
+    "https://www.linkedin.com/jobs/view/4437926548/",
+    "https://www.linkedin.com/jobs/view/4457416049/",
+    "https://www.linkedin.com/jobs/view/4466121937/",
+    "https://www.linkedin.com/jobs/view/4468010667/"
+  ],
+  "link_check_codes": {
+    "https://www.amazon.jobs/jobs/10442923/apply": "404",
+    "https://www.amazon.jobs/jobs/10459443/apply": "404",
+    "https://www.linkedin.com/jobs/view/4437926548/": "429",
+    "https://www.linkedin.com/jobs/view/4457416049/": "429",
+    "https://www.linkedin.com/jobs/view/4466121937/": "429",
+    "https://www.linkedin.com/jobs/view/4468010667/": "429"
+  },
+  "company_blurbs": {
+    "Abridge": "AI clinical documentation for healthcare.",
+    "Netic": "AI agents for business workflows (SF).",
+    "Google": "Big tech / search & cloud.",
+    "Meta": "Social / AI infra (Facebook).",
+    "Apple": "Consumer hardware & services.",
+    "Amazon": "E-commerce & AWS.",
+    "Microsoft": "Cloud / productivity / AI.",
+    "NVIDIA": "GPUs & AI systems.",
+    "Netflix": "Streaming entertainment.",
+    "LinkedIn": "Professional network (Microsoft).",
+    "Adobe": "Creative cloud software.",
+    "Uber": "Mobility & delivery marketplace.",
+    "DoorDash": "Food delivery marketplace.",
+    "OpenAI": "Frontier AI models.",
+    "Anthropic": "Frontier AI safety / Claude.",
+    "xAI": "Elon Musk AI lab.",
+    "DeepMind": "Google DeepMind research.",
+    "Cursor": "AI code editor (Anysphere).",
+    "Scale AI": "Data / eval for AI.",
+    "Scale": "Data / eval for AI.",
+    "Databricks": "Lakehouse data + AI platform.",
+    "Stripe": "Payments infrastructure.",
+    "Snowflake": "Cloud data warehouse.",
+    "Tesla": "EV / autonomy / energy."
+  }
+}
