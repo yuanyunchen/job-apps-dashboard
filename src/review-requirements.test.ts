@@ -39,6 +39,9 @@ describe('final review presentation requirements', () => {
     expect(ruleBody('.heatmap-day')).toMatch(/min-height:\s*(?:2[4-9]|[3-9]\d)px/)
     expect(ruleBody('.heatmap-cell')).toMatch(/width:\s*10px/)
     expect(ruleBody('.heatmap-cell')).toMatch(/height:\s*10px/)
+    expect(
+      ruleBody('.heatmap-day[aria-pressed="true"] .heatmap-cell'),
+    ).not.toContain('transform:')
   })
 
   it('gives unavailable-link text at least 4.5:1 contrast on white', () => {

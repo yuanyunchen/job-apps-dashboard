@@ -427,13 +427,12 @@ p {
   width: 10px;
   height: 10px;
   border-radius: 2.5px;
-  transition: transform 120ms ease, box-shadow 120ms ease;
+  transition: box-shadow 120ms ease;
 }
 
 .heatmap-day:hover .heatmap-cell,
 .heatmap-day[aria-pressed="true"] .heatmap-cell {
   z-index: 1;
-  transform: scale(1.28);
   box-shadow: 0 0 0 1px white, 0 0 0 2px #6e736b;
 }
 
